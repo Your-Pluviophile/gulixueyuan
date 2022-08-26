@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
 public class GetGenerator {
+
     @Test
     public void main1() {
 // 1、创建代码生成器
