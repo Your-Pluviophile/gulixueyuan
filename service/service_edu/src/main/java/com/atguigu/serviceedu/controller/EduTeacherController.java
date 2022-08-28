@@ -1,9 +1,12 @@
 package com.atguigu.serviceedu.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.atguigu.serviceedu.entity.EduTeacher;
+import com.atguigu.serviceedu.service.EduTeacherService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -16,6 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/serviceedu/edu-teacher")
 public class EduTeacherController {
+//    注入service
+    @Autowired
+    private EduTeacherService teacherService;
+    //1 查询讲师表所有内容
+
+    @GetMapping("findAll")
+    private List<EduTeacher> findAllTeacher(){
+        List<EduTeacher> list = teacherService.list(null);
+        return list;
+    }
+
+    //2 逻辑删除讲师
+    @DeleteMapping("{id}")
+    public boolean removeById(@PathVariable String id){
+        return teacherService.removeById(id);
+    }
 
 }
 
