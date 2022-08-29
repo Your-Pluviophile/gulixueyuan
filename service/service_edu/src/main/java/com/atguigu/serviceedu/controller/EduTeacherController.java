@@ -1,6 +1,7 @@
 package com.atguigu.serviceedu.controller;
 
 
+import com.atguigu.commonutils.R;
 import com.atguigu.serviceedu.entity.EduTeacher;
 import com.atguigu.serviceedu.service.EduTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,20 @@ public class EduTeacherController {
     //1 查询讲师表所有内容
 
     @GetMapping("findAll")
-    private List<EduTeacher> findAllTeacher(){
+    private R findAllTeacher(){
         List<EduTeacher> list = teacherService.list(null);
-        return list;
+        return R.ok().data("items",list);
     }
 
     //2 逻辑删除讲师
     @DeleteMapping("{id}")
-    public boolean removeById(@PathVariable String id){
-        return teacherService.removeById(id);
+    public R removeById(@PathVariable String id){
+        boolean flag = teacherService.removeById(id);
+        if(flag){
+            return R.ok();
+        }else{
+            return R.error();
+        }
     }
 
 }
