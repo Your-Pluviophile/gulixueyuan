@@ -90,6 +90,22 @@ public class EduTeacherController {
             return R.error();
         }
     }
+    //5 根据id查询讲师
+    @GetMapping("selectById/{id}")
+    public  R selectById(@PathVariable long id ){
+        EduTeacher teacher = teacherService.getById(id);
+        return R.ok().data("teacher",teacher);
+    }
+    //6 根据ID修改讲师信息
+    @PostMapping("updateTeacher")
+    public R updateTeacher(@RequestBody EduTeacher eduTeacher){
+        boolean flag = teacherService.updateById(eduTeacher);
+        if(flag){
+            return R.ok();
+        }else{
+            return R.error();
+        }
+    }
 
 }
 
