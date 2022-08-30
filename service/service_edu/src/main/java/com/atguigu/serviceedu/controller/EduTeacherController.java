@@ -3,8 +3,12 @@ package com.atguigu.serviceedu.controller;
 
 import com.atguigu.commonutils.R;
 import com.atguigu.serviceedu.entity.EduTeacher;
+import com.atguigu.serviceedu.entity.vo.TeacherQuery;
 import com.atguigu.serviceedu.service.EduTeacherService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +44,40 @@ public class EduTeacherController {
         }else{
             return R.error();
         }
+    }
+    //3 多条件组合查询带分页-讲师列表
+    @PostMapping("pageTeacher/{current}/{limit}")
+    public R pageListTeacher(@PathVariable long current,
+                             @PathVariable long limit,
+                             @RequestBody(required = false) TeacherQuery teacherQuery){
+        Page<EduTeacher> pageTeacher = new Page<>(current,limit);
+        //构建条件
+        QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
+
+        String name = teacherQuery.getName();
+        Integer level = teacherQuery.getLevel();
+        String begin = teacherQuery.getBegin();
+        String end = teacherQuery.getEnd();
+
+        if(!StringUtils.isEmpty(name)){
+            wrapper.like("name",name);
+        }
+        if (!StringUtils.isEmpty(level) ) {
+            wrapper.eq("level", level);
+        }
+        if (!StringUtils.isEmpty(begin)) {
+            wrapper.ge("gmt_create", begin);
+        }
+        if (!StringUtils.isEmpty(end)) {
+            wrapper.le("gmt_create", end);
+        }
+
+        teacherService.page(pageTeacher,wrapper);
+
+        List<EduTeacher> records = pageTeacher.getRecords();
+        long total = pageTeacher.getTotal();
+
+        return R.ok().data("page",records).data("total",total);
     }
 
 }
