@@ -1,6 +1,6 @@
 package com.atguigu.serviceedu.controller;
 
-
+import com.atguigu.serviceedu.entity.EduTeacher;
 import com.atguigu.commonutils.R;
 import com.atguigu.serviceedu.entity.EduTeacher;
 import com.atguigu.serviceedu.entity.vo.TeacherQuery;
@@ -78,6 +78,17 @@ public class EduTeacherController {
         long total = pageTeacher.getTotal();
 
         return R.ok().data("page",records).data("total",total);
+    }
+
+    //4 新增讲师
+    @PostMapping("addTeacher")
+    public R addTeacher(@RequestBody EduTeacher eduTeacher ){
+        boolean save = teacherService.save(eduTeacher);
+        if(save){
+            return R.ok();
+        }else{
+            return R.error();
+        }
     }
 
 }
