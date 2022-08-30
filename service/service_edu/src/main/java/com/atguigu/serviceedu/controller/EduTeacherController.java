@@ -100,6 +100,7 @@ public class EduTeacherController {
     @PostMapping("updateTeacher")
     public R updateTeacher(@RequestBody EduTeacher eduTeacher){
         boolean flag = teacherService.updateById(eduTeacher);
+//        int i = 1/0;异常测试
         if(flag){
             return R.ok();
         }else{
