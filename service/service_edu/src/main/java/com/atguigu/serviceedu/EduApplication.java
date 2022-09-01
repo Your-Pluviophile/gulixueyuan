@@ -8,6 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {"com.atguigu"})
 public class EduApplication {
     public static void main(String[] args) {
-        SpringApplication.run(EduApplication.class,args);
+        try {
+            SpringApplication.run(EduApplication.class,args);
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+
     }
 }
