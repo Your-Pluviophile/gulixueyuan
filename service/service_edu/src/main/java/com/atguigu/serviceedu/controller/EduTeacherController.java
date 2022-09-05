@@ -23,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/serviceedu/edu-teacher")
+@CrossOrigin
 public class EduTeacherController {
 //    注入service
     @Autowired
