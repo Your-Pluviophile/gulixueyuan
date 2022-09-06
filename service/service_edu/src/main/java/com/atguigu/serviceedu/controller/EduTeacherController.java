@@ -78,7 +78,7 @@ public class EduTeacherController {
         List<EduTeacher> records = pageTeacher.getRecords();
         long total = pageTeacher.getTotal();
 
-        return R.ok().data("page",records).data("total",total);
+        return R.ok().data("total",total).data("rows",records);
     }
 
     //4 新增讲师
