@@ -92,7 +92,7 @@ public class EduTeacherController {
         }
     }
     //5 根据id查询讲师
-    @GetMapping("selectById/{id}")
+    @GetMapping("getTeacher/{id}")
     public  R selectById(@PathVariable long id ){
         EduTeacher teacher = teacherService.getById(id);
         return R.ok().data("teacher",teacher);
