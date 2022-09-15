@@ -2,7 +2,6 @@ package com.atguigu.serviceedu.controller;
 
 import com.atguigu.serviceedu.entity.EduTeacher;
 import com.atguigu.commonutils.R;
-import com.atguigu.serviceedu.entity.EduTeacher;
 import com.atguigu.serviceedu.entity.vo.TeacherQuery;
 import com.atguigu.serviceedu.service.EduTeacherService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -22,7 +21,7 @@ import java.util.List;
  * @since 2022-08-22
  */
 @RestController
-@RequestMapping("/serviceedu/edu-teacher")
+@RequestMapping("/eduservice/edu-teacher")
 @CrossOrigin
 public class EduTeacherController {
 //    注入service
