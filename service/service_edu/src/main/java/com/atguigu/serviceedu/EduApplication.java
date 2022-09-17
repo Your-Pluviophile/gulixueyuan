@@ -11,7 +11,7 @@ public class EduApplication {
         try {
             SpringApplication.run(EduApplication.class,args);
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
 
     }
