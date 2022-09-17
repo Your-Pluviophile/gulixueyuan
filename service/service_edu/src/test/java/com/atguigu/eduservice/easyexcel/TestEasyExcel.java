@@ -19,7 +19,8 @@ public class TestEasyExcel {
 
     public static void main(String[] args) {
         String filename = "/Users/linhong/test.xlsx";
-        EasyExcel.write(filename,DemoData.class).sheet("学生信息表").doWrite(data());
+//        EasyExcel.write(filename,DemoData.class).sheet("学生信息表").doWrite(data());
+        EasyExcel.read(filename,DemoData.class,new ReadListener()).sheet().doRead();
 
     }
 }
